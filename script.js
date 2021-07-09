@@ -33,12 +33,11 @@ function addBookToLibrary() {
     authorValue = document.getElementById("form-input").elements[1].value;
     pageValue = parseInt(document.getElementById("form-input").elements[2].value);
     readValue = document.getElementById('form-input').elements[3].value;
-    newBook = new Book (titleValue, authorValue, pageValue, readValue)
+    newBook = new Book(titleValue, authorValue, pageValue, readValue)
     if (!Number.isInteger(pageValue)) {
         alert("Enter a proper number of pages!")
         return
     } else {
-        
         myLibrary.push(newBook);
         saveData()
         render();
@@ -49,7 +48,7 @@ function addBookToLibrary() {
 function render() {
     const books = document.querySelectorAll('.book')
     books.forEach(book => bookContainer.removeChild(book));
-    for (let i = 0; i<myLibrary.length; i++) {
+    for (let i = 0; i < myLibrary.length; i++) {
         displayBooks(myLibrary[i]);
     }
 }
@@ -64,7 +63,7 @@ function displayBooks(item) {
 
     newBookDiv.classList.add('book');
     newBookDiv.setAttribute('id', myLibrary.indexOf(item));
-    
+
     titleDiv.textContent = item.title;
     titleDiv.classList.add('title');
     newBookDiv.appendChild(titleDiv);
@@ -79,11 +78,11 @@ function displayBooks(item) {
 
     readButton.classList = 'readButton'
     newBookDiv.appendChild(readButton)
-    
-    if(item.isRead === 'Read') {
+
+    if (item.isRead === 'Read') {
         readButton.textContent = 'Read';
         readButton.style.backgroundColor = '#63da63';
-    }else {
+    } else {
         readButton.textContent = 'Not Read';
         readButton.style.backgroundColor = '#e04f63'
     }
@@ -105,10 +104,10 @@ function displayBooks(item) {
     bookContainer.appendChild(newBookDiv)
 
     removeButton.addEventListener('click', () => {
-        myLibrary.splice(myLibrary.indexOf(item),1);
+        myLibrary.splice(myLibrary.indexOf(item), 1);
         saveData()
         render();
-        });
+    });
 }
 
 function saveData() {
@@ -116,9 +115,9 @@ function saveData() {
 }
 
 function restore() {
-    if(!localStorage.myLibrary) {
+    if (!localStorage.myLibrary) {
         render();
-    }else {
+    } else {
         let objects = localStorage.getItem('myLibrary')
         objects = JSON.parse(objects);
         myLibrary = objects;
