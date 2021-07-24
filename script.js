@@ -41,7 +41,7 @@ function addBookToLibrary() {
         myLibrary.push(newBook);
         saveData()
         render();
-        document.dupa.reset();
+        document.main.reset();
     }
 }
 
